@@ -1,8 +1,3 @@
-/********************************************
- * Developer: KAZU
- * Project: KAZU-MOD
- * Telegram: https://t.me/K_4441
- ********************************************/
 
 #include "Tools.h"
 
