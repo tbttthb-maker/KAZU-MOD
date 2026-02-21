@@ -1,16 +1,23 @@
-ARCHS = arm64
+# Target Architecture for iOS
+ARCHS = arm64 arm64e
 DEBUG = 0
 FINALPACKAGE = 1
 FOR_RELEASE = 1
 
+# Project Name
 TWEAK_NAME = KAZU_PRO
 
 include $(THEOS)/makefiles/common.mk
 
-KAZU_PRO_FILES = Tweak.xm $(wildcard ESP/*.mm) $(wildcard ESP/*.cpp) $(wildcard SDK/*.cpp) $(wildcard imgui/*.mm) $(wildcard imgui/*.cpp) $(wildcard KittyMemory/*.cpp) $(wildcard Dobby/*.cpp)
-KAZU_PRO_FRAMEWORKS = IOKit UIKit Foundation Security QuartzCore CoreGraphics CoreText AVFoundation Accelerate GLKit SystemConfiguration GameController
-KAZU_PRO_CCFLAGS = -w -std=c+-+-17 -fno-rtti -fno-exceptions -DNDEBUG -Wno-module-import-in-extern-c
+# Automatically find all source files in the root directory
+KAZU_PRO_FILES = PubgLoad.mm metalbiew.mm Tools.cpp $(wildcard *.mm) $(wildcard *.cpp)
+
+# Required Frameworks for Metal and ESP
+KAZU_PRO_FRAMEWORKS = UIKit Foundation Security QuartzCore CoreGraphics CoreText AVFoundation Metal MetalKit IOKit Accelerate
+
+# Compiler Flags for C++17 and Performance
+KAZU_PRO_CCFLAGS = -w -std=c++17 -fno-rtti -fno-exceptions -DNDEBUG -Wno-module-import-in-extern-c
 KAZU_PRO_CFLAGS = -w -fobjc-arc -Wno-deprecated-declarations -Wno-unused-variable -Wno-unused-value
-KAZU_PRO_LDFLAGS = -lstdc+-+-
+KAZU_PRO_LDFLAGS = -lstdc++
 
 include $(THEOS_MAKE_PATH)/tweak.mk
