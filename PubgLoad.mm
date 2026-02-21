@@ -1,7 +1,14 @@
 #import "PubgLoad.h"
 #import "metalbiew.h"
+
+/********************************************
+ * Developer: KAZU
+ * Project: KAZU-MOD
+ * Telegram: @KAZU_MODS
+ ********************************************/
+
 extern bool MenDeal;
-//  Created by Telegram @CheatBot_Owner
+
 @interface ImGuiLoad()
 @property (nonatomic, strong) metalbiew *vna;
 @end
@@ -11,12 +18,9 @@ extern bool MenDeal;
 + (void)load
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //  Created by Telegram @CheatBot_Owner
-        // [[self share] show];
         [[self share] initTapGes];
     });
 }
-
 
 + (instancetype)share
 {
@@ -27,27 +31,29 @@ extern bool MenDeal;
     });
     return tool;
 }
+
 -(void)initTapGes
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-    tap.numberOfTapsRequired = 3;//点击次数
-    tap.numberOfTouchesRequired = 3;//手指数
+    tap.numberOfTapsRequired = 3;
+    tap.numberOfTouchesRequired = 3;
     [[UIApplication sharedApplication].windows[0].rootViewController.view addGestureRecognizer:tap];
     [tap addTarget:self action:@selector(show)];
 }
+
 - (void)show
 {
     if (!_vna) {
         metalbiew *vc = [[metalbiew alloc] init];
         _vna = vc;
     }
-    if(MenDeal==true)MenDeal=false;
-    else {
-        MenDeal=true;
-        [[UIApplication sharedApplication].windows[0].rootViewController.view addSubview:_vna.view];}
     
+    if(MenDeal == true) {
+        MenDeal = false;
+    } else {
+        MenDeal = true;
+        [[UIApplication sharedApplication].windows[0].rootViewController.view addSubview:_vna.view];
+    }
 }
-
-
 
 @end
