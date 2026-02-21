@@ -1,5 +1,6 @@
 #import "PubgLoad.h"
 #import "metalbiew.h"
+#import "FutureESP.h"
 
 /********************************************
  * Developer: KAZU
@@ -8,6 +9,7 @@
  ********************************************/
 
 extern bool MenDeal;
+FutureESP* g_ESP = new FutureESP(); 
 
 @interface ImGuiLoad()
 @property (nonatomic, strong) metalbiew *vna;
@@ -17,8 +19,12 @@ extern bool MenDeal;
 
 + (void)load
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    // Delay initialization to ensure the game environment is ready
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[self share] initTapGes];
+        
+        // Pre-initialize the ESP view layer automatically on startup
+        [[self share] setupESPView];
     });
 }
 
@@ -32,28 +38,34 @@ extern bool MenDeal;
     return tool;
 }
 
+// Setup the drawing layer (Metal) to be ready for ESP rendering
+- (void)setupESPView 
+{
+    if (!_vna) {
+        _vna = [[metalbiew alloc] init];
+        // Add the drawing view to the main window
+        [[UIApplication sharedApplication].windows[0].rootViewController.view addSubview:_vna.view];
+        MenDeal = false; 
+    }
+}
+
 -(void)initTapGes
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-    tap.numberOfTapsRequired = 3;
-    tap.numberOfTouchesRequired = 3;
+    tap.numberOfTapsRequired = 3;   // 3 Taps
+    tap.numberOfTouchesRequired = 3; // 3 Fingers
     [[UIApplication sharedApplication].windows[0].rootViewController.view addGestureRecognizer:tap];
     [tap addTarget:self action:@selector(show)];
 }
 
 - (void)show
 {
+    // Toggle the Menu UI visibility
     if (!_vna) {
-        metalbiew *vc = [[metalbiew alloc] init];
-        _vna = vc;
+        [self setupESPView];
     }
     
-    if(MenDeal == true) {
-        MenDeal = false;
-    } else {
-        MenDeal = true;
-        [[UIApplication sharedApplication].windows[0].rootViewController.view addSubview:_vna.view];
-    }
+    MenDeal = !MenDeal; 
 }
 
 @end
