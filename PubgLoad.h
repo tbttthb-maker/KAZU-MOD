@@ -1,21 +1,30 @@
 //
 //  ImGuiLoad.h
-//  libPUBGDylib
+//  KAZU-MOD
 //
-//  Created by yiming on 2021/5/31.
+//  Created by KAZU on 2026.
+//  Copyright © 2026 KAZU. All rights reserved.
 //
-//#import "KittyMemory/MemoryPatch.hpp"
+
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+/********************************************
+ * Created By: KAZU
+ * Project: KAZU-MOD
+ * Telegram: @KAZU_MODS
+ ********************************************/
 
 @interface ImGuiLoad : NSObject
+
 + (instancetype)share;
 
 - (void)show;
 - (void)initTapGes;
+
 @end
 
 NS_ASSUME_NONNULL_END
-// SAQER
+
+// KAZU MODS
