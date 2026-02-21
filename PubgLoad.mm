@@ -4,7 +4,7 @@
 /********************************************
  * Developer: KAZU
  * Project: KAZU-MOD
- * Telegram: @KAZU_MODS
+ * Telegram: https://t.me/K_4441
  ********************************************/
 
 extern bool MenDeal;
