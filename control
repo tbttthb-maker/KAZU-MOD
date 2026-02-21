@@ -1,0 +1,9 @@
+Package: com.kazu.elite.v1
+Name: KAZU PRIVATE - 4.2.0
+Depends: firmware (>= 5.0), mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: High-Performance Mod Menu. Magic Bullet, No Recoil, and Advanced ESP. Developed by KAZU.
+Maintainer: KAZU
+Author: KAZU
+Section: Tweaks
