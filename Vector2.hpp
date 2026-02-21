@@ -1,5 +1,11 @@
 #pragma once
 
+/********************************************
+ * Developer: KAZU
+ * Project: KAZU-MOD
+ * Telegram: https://t.me/K_4441
+ ********************************************/
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -15,7 +21,6 @@ struct Vector2
         };
         float data[2];
     };
-// SAQER
 
     /**
      * Constructors.
@@ -311,7 +316,7 @@ float Vector2::Component(Vector2 a, Vector2 b)
 {
     return Dot(a, b) / Magnitude(b);
 }
-// SAQER
+
 float Vector2::Distance(Vector2 a, Vector2 b)
 {
     return Vector2::Magnitude(a - b);
