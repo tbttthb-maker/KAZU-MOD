@@ -1,5 +1,10 @@
-#include "Tools.h"
+/********************************************
+ * Developer: KAZU
+ * Project: KAZU-MOD
+ * Telegram: https://t.me/K_4441
+ ********************************************/
 
+#include "Tools.h"
 
 #if defined(__arm__)
 #define process_vm_readv_syscall 376
@@ -14,6 +19,7 @@
 #define process_vm_readv_syscall 310
 #define process_vm_writev_syscall 311
 #endif
+
 pid_t target_pid = -1;
 
 ssize_t process_v(pid_t __pid, const struct iovec *__local_iov, unsigned long __local_iov_count, const struct iovec *__remote_iov, unsigned long __remote_iov_count, unsigned long __flags, bool iswrite) {
@@ -35,7 +41,6 @@ bool pvm(void *address, void *buffer, size_t size, bool write = false) {
     ssize_t bytes = process_v(target_pid, local, 1, remote, 1, 0, write);
     return bytes == size;
 }
-
 
 bool Tools::Read(void *addr, void *buffer, size_t length) {
     return memcpy(buffer, addr, length) != 0;
@@ -96,7 +101,7 @@ uintptr_t Tools::GetBaseAddress(const char *name) {
             }
         }
     }
-// SA8ER
+
     fclose(f);
     return base;
 }
@@ -164,4 +169,3 @@ uintptr_t Tools::FindPattern(const char *lib, const char *pattern) {
     }
     return 0;
 }
-
